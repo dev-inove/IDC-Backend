@@ -1,11 +1,5 @@
-import express from 'express';
+import server from './shared/app';
 
-  const app = express();
-
-  app.get('/users', (request, response) => {
-    return response.send('Hello World!');
-  });
-
-  app.listen(3333, () => {
-    console.log('HTTP Server tá rodanu caraio!');
-  });
+server.listen(process.env.SERVER_PORT, () => {
+  console.log('HTTP Server tá rodanu mo port '+process.env.SERVER_PORT+' caraio!');
+})

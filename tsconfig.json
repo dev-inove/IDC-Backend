@@ -1,11 +1,18 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
         "target":"ES2022",
         "module": "CommonJS",
         "rootDir": "./src",
         "outDir": "./dist",
         "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true,
         "allowJs": true,
+        "paths": {
+            "@modules/*": ["modules/*"],
+            "@shared/*": ["shared/*"],
+            "@config/*": ["config/*"],
+          }
     },
 }
