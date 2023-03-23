@@ -8,6 +8,7 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
+	"lib": ["esnext"],
         "allowJs": true,
         "paths": {
             "@modules/*": ["modules/*"],
