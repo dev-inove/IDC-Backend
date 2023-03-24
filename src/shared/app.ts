@@ -4,8 +4,6 @@ import '../config/moduleAliasConfig';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import '@shared/database'
-
 import express from 'express';
 import cors from 'cors';
 import routes from '@shared/index.routes';
@@ -31,15 +29,5 @@ class App {
     this.server.use(bodyParser.json());
   }
 }
-/*
-  const app = express();
-  app.get('/users', (request, response) => {
-  return response.send('Hello World!');
-  });
-
-  app.listen(3333, () => {
-  console.log('HTTP Server tá rodanu caraio!');
-  });
-*/
 
 export default new App().server;

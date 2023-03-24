@@ -3,7 +3,14 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 const routes = Router();
 
-routes.get('/', async (req, res) => {
+
+
+/*
+    request ===> 
+*/
+
+
+routes.get('/',async (req, res, next) => {
     try {
         const result = await prisma.exemplo.findMany();
         res.status(201).json(result);
