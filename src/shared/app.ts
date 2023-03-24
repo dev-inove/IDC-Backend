@@ -1,5 +1,5 @@
 import 'module-alias/register';
-import '@config/moduleAliasConfig';
+import '../config/moduleAliasConfig';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -28,7 +28,6 @@ class App {
   private middlewares(): void {
     this.server.use(express.json());
     this.server.use(cors());
-    this.server.use(bodyParser.urlencoded({ extended: false }))
     this.server.use(bodyParser.json());
   }
 }
