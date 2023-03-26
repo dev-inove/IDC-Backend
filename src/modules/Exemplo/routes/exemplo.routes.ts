@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { PrismaClient, Prisma } from '@prisma/client'
+import exemploController from '../controllers/exemploController'
 const prisma = new PrismaClient()
 const routes = Router()
 
@@ -7,22 +8,12 @@ const routes = Router()
     request ===> 
 */
 
-routes.get('/', async (req, res, next) => {
-	try {
-		const result = await prisma.exemplo.findMany()
-		res.status(201).json(result)
-	} catch (error) {
-		if (error instanceof Prisma.PrismaClientKnownRequestError) {
-			return res
-				.status(400)
-				.json({ errorCode: error.code, message: error.message })
-		} else return res.status(400).json(error)
-	}
-})
+routes.get('/', exemploController.index)
 
-routes.get('/:exampleId', async (req, res) => {
+routes.get('/:exampleId', async (req, res, next) => {
 	try {
 		const { exampleId } = req.params
+
 		const result = await prisma.exemplo.findUnique({
 			where: {
 				id: Number(exampleId),
@@ -31,10 +22,12 @@ routes.get('/:exampleId', async (req, res) => {
 		res.status(201).json(result)
 	} catch (error) {
 		if (error instanceof Prisma.PrismaClientKnownRequestError) {
-			return res
+			res
 				.status(400)
-				.json({ errorCode: error.code, message: error.message })
-		} else return res.status(400).json(error)
+				.json({ errorCode: error.code, message: error.message.split('\n') })
+		} else if (error instanceof Error)
+			res.status(400).json({ message: error.message, cause: error.cause })
+		else return res.status(400).json(error)
 	}
 })
 
@@ -51,10 +44,12 @@ routes.post('/', async (req, res) => {
 		res.status(201).json(result)
 	} catch (error) {
 		if (error instanceof Prisma.PrismaClientKnownRequestError) {
-			return res
+			res
 				.status(400)
-				.json({ errorCode: error.code, message: error.message })
-		} else return res.status(400).json(error)
+				.json({ errorCode: error.code, message: error.message.split('\n') })
+		} else if (error instanceof Error)
+			res.status(400).json({ message: error.message, cause: error.cause })
+		else return res.status(400).json(error)
 	}
 })
 
@@ -75,10 +70,12 @@ routes.patch('/:id', async (req, res) => {
 		res.status(201).json(result)
 	} catch (error) {
 		if (error instanceof Prisma.PrismaClientKnownRequestError) {
-			return res
+			res
 				.status(400)
-				.json({ errorCode: error.code, message: error.message })
-		} else return res.status(400).json(error)
+				.json({ errorCode: error.code, message: error.message.split('\n') })
+		} else if (error instanceof Error)
+			res.status(400).json({ message: error.message, cause: error.cause })
+		else return res.status(400).json(error)
 	}
 })
 
@@ -93,10 +90,12 @@ routes.delete('/:id', async (req, res) => {
 		res.status(201).json(result)
 	} catch (error) {
 		if (error instanceof Prisma.PrismaClientKnownRequestError) {
-			return res
+			res
 				.status(400)
-				.json({ errorCode: error.code, message: error.message })
-		} else return res.status(400).json(error)
+				.json({ errorCode: error.code, message: error.message.split('\n') })
+		} else if (error instanceof Error)
+			res.status(400).json({ message: error.message, cause: error.cause })
+		else return res.status(400).json(error)
 	}
 })
 
