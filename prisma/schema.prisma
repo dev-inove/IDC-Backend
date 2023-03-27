@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
 
@@ -12,23 +12,42 @@ datasource db {
   schemas  = ["dev", "test", "example"]
 }
 
-model Exemplo{
-  id    Int     @default(autoincrement()) @id
+model Exemplo {
+  id   Int    @id @default(autoincrement())
   nome String
-  preco Float
-  peso Float
+  @@map("exemplo")
   @@schema("example")
 }
 
-model UserBase{
-  id String @default(uuid()) @id
+model Produto {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  preco       Float
+  peso        Float
+  categoriaId Int ?
+  Categoria   Categoria ? @relation(fields: [categoriaId], references: [id])
+
+  @@schema("example")
+}
+
+model Categoria {
+  id       Int       @id @default(autoincrement())
+  nome     String
+  produtos Produto[]
+
+  @@schema("example")
+}
+
+model UserBase {
+  id String @id @default(uuid())
+
   @@map("user")
   @@schema("dev")
 }
 
-model UserTest{
-  id String @default(uuid()) @id
-  
+model UserTest {
+  id String @id @default(uuid())
+
   @@map("user")
   @@schema("test")
 }
