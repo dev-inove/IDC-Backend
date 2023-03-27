@@ -15,4 +15,9 @@
             "@config/*": ["config/*"],
           }
     },
+    "exclude": [
+        "node_modules",
+        "public_html",
+        "test",
+         ],
 }
