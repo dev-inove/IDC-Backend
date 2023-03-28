@@ -1,23 +1,19 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "target":"ES2022",
-        "module": "CommonJS",
-        "rootDir": "./src",
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-	"lib": ["esnext"],
-        "allowJs": true,
-        "paths": {
-            "@modules/*": ["modules/*"],
-            "@shared/*": ["shared/*"],
-            "@config/*": ["config/*"],
-          }
-    },
-    "exclude": [
-        "node_modules",
-        "public_html",
-        "test",
-         ],
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"target": "ES2022",
+		"module": "CommonJS",
+		"rootDir": "./",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"lib": ["esnext"],
+		"allowJs": true,
+		"paths": {
+			"@modules/*": ["modules/*"],
+			"@shared/*": ["shared/*"],
+			"@config/*": ["config/*"]
+		}
+	},
+	"exclude": ["node_modules", "public_html", "test"]
 }
