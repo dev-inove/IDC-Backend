@@ -37,17 +37,3 @@ model Categoria {
 
   @@schema("example")
 }
-
-model UserBase {
-  id String @id @default(uuid())
-
-  @@map("user")
-  @@schema("dev")
-}
-
-model UserTest {
-  id String @id @default(uuid())
-
-  @@map("user")
-  @@schema("test")
-}
