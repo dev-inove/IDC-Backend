@@ -7,7 +7,14 @@
     "test": "jest",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts RUNNER=dev",
     "example": "ts-node-dev --respawn --transpile-only src/index.ts RUNNER=example",
-    "database": "sudo docker compose up"
+    "database": "sudo docker compose up",
+    "build": "tsc"
+  },
+  "_moduleAliases": {
+    "~": "",
+    "@modules": "src/modules",
+    "@shared": "src/shared",
+    "@config": "src/config"
   },
   "keywords": [],
   "author": "",

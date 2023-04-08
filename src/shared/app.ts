@@ -15,13 +15,11 @@ class App {
 	public constructor() {
 		this.server = express()
 		this.middlewares()
-
 		this.routes()
 	}
 
-	routes() {
+	routes(): void {
 		this.server.use(routes)
-		return 100
 	}
 
 	private middlewares(): void {
@@ -29,6 +27,10 @@ class App {
 		this.server.use(cors())
 		this.server.use(bodyParser.json())
 	}
+
+	public getServer(): express.Application {
+		return this.server
+	}
 }
 
-export default new App().server
+export default new App().getServer()
