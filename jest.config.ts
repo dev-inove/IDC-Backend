@@ -9,8 +9,9 @@ export default {
 	coverageDirectory: 'coverage',
 	coverageProvider: 'v8',
 	roots: ['<rootDir>/src'],
+	testEnvironment: 'node',
 	testMatch: [
-		'**/__tests__/**/*.+(ts|tsx|js)',
+		'**/tests/**/*.+(ts|tsx|js)',
 		'**/?(*.)+(spec|test).+(ts|tsx|js)',
 	],
 	transform: {

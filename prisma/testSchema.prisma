@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
@@ -9,73 +6,74 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["dev"]
+  schemas  = ["teste"]
 }
+
 // Usuário administrativo
-    model Usuario {
+    model UsuarioTeste {
     id String @id @default(uuid())
 
     @@map("usuario")
-    @@schema("dev")
+    @@schema("teste")
     }
 
 // Assistido 
-    model Assistido {
+    model AssistidoTeste {
     id String @id @default(uuid())
 
     @@map("assistido")
-    @@schema("dev")
+    @@schema("teste")
     }
 
 // Relacionados com assistido
     // Endereço
-    model Endereco{
+    model EnderecoTeste{
     id String @id @default(uuid())
 
     @@map("endereco")
-    @@schema("dev")
+    @@schema("teste")
     }
     // Responsavel
-    model Responsavel{
+    model ResponsavelTeste{
     id String @id @default(uuid())
 
     @@map("responsavel")
-    @@schema("dev")
+    @@schema("teste")
     }
 
 // Familia
-    model Familia{
+    model FamiliaTeste{
     id String @id @default(uuid())
 
     @@map("familia")
-    @@schema("dev")
+    @@schema("teste")
     }
 // Relacionados Com Familia
-    model Familiar{
+    model FamiliarTeste{
     id String @id @default(uuid())
 
     @@map("familiar")
-    @@schema("dev")
+    @@schema("teste")
     }
 
-    model Despesas{
+    model DespesasTeste{
     id String @id @default(uuid())
 
     @@map("despesas")
-    @@schema("dev")
+    @@schema("teste")
     }
 
-    model Veiculo{
+    model VeiculoTeste{
     id String @id @default(uuid())
 
     @@map("veiculo")
-    @@schema("dev")
+    @@schema("teste")
     }
 
-    model Habitacao{
+    model HabitacaoTeste{
     id String @id @default(uuid())
 
     @@map("habitacao")
-    @@schema("dev")
+    @@schema("teste")
     }
 
