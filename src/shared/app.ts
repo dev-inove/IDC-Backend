@@ -12,13 +12,13 @@ import bodyParser from 'body-parser'
 class App {
 	private server: express.Application
 
-	public constructor() {
+	constructor() {
 		this.server = express()
 		this.middlewares()
 		this.routes()
 	}
 
-	routes(): void {
+	private routes(): void {
 		this.server.use(routes)
 	}
 

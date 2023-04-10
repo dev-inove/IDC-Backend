@@ -11,27 +11,39 @@ datasource db {
 
 // Usuário administrativo
     model UsuarioTeste {
-    id String @id @default(uuid())
+        id String @id @default(uuid())
 
-    @@map("usuario")
-    @@schema("teste")
+        @@map("usuario")
+        @@schema("teste")
+    }
+
+//  Programa Governamental
+    model ProgramaGovernamentalTeste {
+        id String @id @default(uuid())
+        assistido_id String @unique
+        assistido AssistidoTeste @relation(fields: [assistido_id], references: [id])
+        
+
+        @@map("programa_governamental")
+        @@schema("teste")
     }
 
 // Assistido 
     model AssistidoTeste {
-    id String @id @default(uuid())
-
-    @@map("assistido")
-    @@schema("teste")
+        id String @id @default(uuid())
+        programaGovernamental ProgramaGovernamentalTeste?
+        
+        @@map("assistido")
+        @@schema("teste")
     }
 
 // Relacionados com assistido
     // Endereço
     model EnderecoTeste{
-    id String @id @default(uuid())
+        id String @id @default(uuid())
 
-    @@map("endereco")
-    @@schema("teste")
+        @@map("endereco")
+        @@schema("teste")
     }
     // Responsavel
     model ResponsavelTeste{
