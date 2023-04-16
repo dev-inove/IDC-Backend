@@ -14,13 +14,19 @@ datasource db {
 // Usuário administrativo
     model Usuario {
         id String @id @default(uuid())
-
+        email String
+        nome String
+        hashDaSenha String
         @@map("usuario")
         @@schema("dev")
     }
 //  Programa Governamental
     model ProgramaGovernamental {
         id String @id @default(uuid())
+        nomePrograma String
+        nomeTitular String
+        valor Float
+
         assistido_id String @unique
         assistido Assistido @relation(fields: [assistido_id], references: [id])
         
@@ -28,28 +34,81 @@ datasource db {
         @@map("programa_governamental")
         @@schema("dev")
     }
-
 // Assistido 
     model Assistido {
         id String @id @default(uuid())
+        nome String
+        dataDeNascimento String
+        estadoCivil String
+        sexo String
+        nacionalidade String
+        naturalidade String
+        email String
+        telefone String
+        rg String
+        orgaoEspedidor String
+        cpf String
+        cid10 String
+        temPatenteNaEntidade String
+        reside String
+        utilizaTransporte String
+        atividadesProjetos String
+        observacoes String
+
+        
+        endereco Endereco?
+        responsavel Responsavel?
+        familia Familia?
         programaGovernamental ProgramaGovernamental?
 
         @@map("assistido")
         @@schema("dev")
     }
-
+    
 // Relacionados com assistido
     // Endereço
     model Endereco{
         id String @id @default(uuid())
+        endereco String
+        numero Int
+        bairro String
+        cidade String
+        estado String
+        cep String
+        pontoDeReferencia String
 
+        //relacionamento Endereço -> Assistido
+        assistido_id String @unique
+        assistido Assistido @relation(fields: [assistido_id], references: [id])
+
+        //relacioanamento Endereço -> responsavel
+        responsavel_id String @unique
+        responsavel Responsavel @relation(fields: [responsavel_id], references: [id])
         @@map("endereco")
         @@schema("dev")
     }
     // Responsavel
     model Responsavel{
         id String @id @default(uuid())
+        nome String
+        grauDeParentesco String
+        rg String
+        cpf String
+        idade String
+        proficao String
+        cargo String
+        rendaBruta String
+        telefone String
+        email String
+        documentoComprobatorio String
+        orgaoResponsavel String
+        vigencia Int
+        cadUnico String
+        endereco Endereco?
 
+
+        assistido_id String @unique
+        assistido Assistido @relation(fields: [assistido_id], references: [id])
         @@map("responsavel")
         @@schema("dev")
     }
@@ -57,36 +116,115 @@ datasource db {
     // Familia
     model Familia{
         id String @id @default(uuid())
+        rendaBruta Float
 
+
+        despesas Despesas[]
+        habitacao Habitacao[]
+        veiculos Veiculo[]
+        quadroFamiliar Familiar[]
+
+        assistido_id String @unique
+        assistido Assistido @relation(fields: [assistido_id], references: [id])
         @@map("familia")
         @@schema("dev")
     }
     // Relacionados Com Familia
     model Familiar{
         id String @id @default(uuid())
+        nomeCompleto String
+        parentesco String
+        idade String
+        escolaridade String
+        estadoCivil String
+        proficao String
+        declaraImpRenda Boolean
+        salario Decimal
 
+
+        deficiencia Deficiencia?
+        problemaDeSaude ProblemaDeSaude?
+
+        familia_id String @unique
+        familia Familia @relation(fields: [familia_id], references: [id])
         @@map("familiar")
         @@schema("dev")
     }
     //Despesas
     model Despesas{
         id String @id @default(uuid())
+        energia Decimal
+        agua Decimal
+        alimentacao Decimal
+        aluguelFinanciamento Decimal
+        saude Decimal
+        educacao Decimal
+        outras Decimal
+        total Decimal
 
+        familia_id String @unique
+        familia Familia @relation(fields: [familia_id], references: [id])
         @@map("despesas")
         @@schema("dev")
     }
+
     // Veículo
     model Veiculo{
         id String @id @default(uuid())
+        marca String
+        modelo String
+        ano Int
+        situacao String
+        utilizacao String
 
+        familia_id String @unique
+        familia Familia @relation(fields: [familia_id], references: [id])
         @@map("veiculo")
         @@schema("dev")
     }
+
     // Habitação
     model Habitacao{
         id String @id @default(uuid())
+        situacaoImovel String
+        tipoImovel String
+        estruturaFisica String
+        qtdComodos Int
+        qtdBanheiros Int
+        fornecimentoEnergia String
+        abastecimentoAgua String
+        esgoto Boolean
+        coletaLixo Boolean
+        iluminacaoPublica Boolean
 
+        familia_id String @unique
+        familia Familia @relation(fields: [familia_id], references: [id])
         @@map("habitacao")
         @@schema("dev")
     }
 
+//Relacionamento com Familiares
+
+    // Deficiencia
+    model Deficiencia{
+        id String @id @default(uuid())
+        tipoDaDeficiencia String
+        despesas Decimal
+
+        familiar_id String @unique
+        familiar Familiar @relation(fields: [familiar_id], references: [id])
+        @@map("deficiencia")
+        @@schema("dev")
+    }
+     // ProblemaDeSaude
+    model ProblemaDeSaude{
+        id String @id @default(uuid())
+        tipoDeDoenca String
+        medicamentoContinuo Boolean
+        despesas Decimal
+
+        familiar_id String @unique
+        familiar Familiar @relation(fields: [familiar_id], references: [id])
+        @@map("problema_de_saude")
+        @@schema("dev")
+    }
