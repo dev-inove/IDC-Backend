@@ -1,15 +1,10 @@
 import { Prisma } from '@prisma/client'
 import { Request, Response } from 'express'
-import { IndexExemploService } from '@modules/Exemplo/services/IndexExemploService'
-import { ShowExemploService } from '@modules/Exemplo/services/ShowExemploService'
-import { StoreExemploService } from '@modules/Exemplo/services/StoreExemploService'
-import { UpdateExemploService } from '@modules/Exemplo/services/UpdateExemploService'
-import { DestroyExemploService } from '@modules/Exemplo/services/DestroyExemploService'
-
+import ExemploService from '@services/UserService'
 class ExemploController {
-	async index(request: Request, response: Response) {
+	async list(request: Request, response: Response) {
 		try {
-			const result = await IndexExemploService()
+			const result = await ExemploService.list()
 			response.status(201).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -20,11 +15,11 @@ class ExemploController {
 		}
 	}
 
-	async show(request: Request, response: Response) {
+	async find(request: Request, response: Response) {
 		try {
 			const { exampleId } = request.params
 
-			const result = await ShowExemploService(Number(exampleId))
+			const result = await ExemploService.find(Number(exampleId))
 			response.status(201).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -39,11 +34,11 @@ class ExemploController {
 		}
 	}
 
-	async store(request: Request, response: Response) {
+	async create(request: Request, response: Response) {
 		try {
 			const { nome } = request.body
 
-			const result = await StoreExemploService(nome)
+			const result = await ExemploService.create(nome)
 			response.status(201).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -62,7 +57,7 @@ class ExemploController {
 		try {
 			const { nome } = request.body
 			const { id } = request.params
-			const result = await UpdateExemploService(Number(id), String(nome))
+			const result = await ExemploService.update(Number(id), String(nome))
 			response.status(201).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -77,10 +72,10 @@ class ExemploController {
 		}
 	}
 
-	async destroy(request: Request, response: Response) {
+	async delete(request: Request, response: Response) {
 		try {
 			const { id } = request.params
-			const result = await DestroyExemploService(Number(id))
+			const result = await ExemploService.delete(Number(id))
 			response.status(201).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {

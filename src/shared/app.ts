@@ -1,12 +1,12 @@
 import 'module-alias/register'
-import '../config/moduleAliasConfig'
+import '@config/moduleAliasConfig'
 
 import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
 import cors from 'cors'
-import routes from '@shared/index.routes'
+import routes from '@shared/app.routes'
 import bodyParser from 'body-parser'
 
 class App {

@@ -1,16 +1,20 @@
 {
     "compilerOptions": {
         "baseUrl": "./src",
+        "rootDir": "./",
         "target":"ES2022",
         "module": "CommonJS",
-        "rootDir": "./src",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
-	"lib": ["esnext"],
+	    "lib": ["esnext"],
         "allowJs": true,
         "paths": {
-            "@modules/*": ["modules/*"],
+            "@controllers/*": ["controllers/*"],
+            "@middlewares/*": ["middlewares/*"],
+            "@routes/*": ["routes/*"],
+            "@repositories/*": ["repositories/*"],
+            "@services/*": ["services/*"],
             "@shared/*": ["shared/*"],
             "@config/*": ["config/*"],
           }
