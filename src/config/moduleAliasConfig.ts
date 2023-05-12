@@ -6,7 +6,7 @@ export default moduleAlias.addAliases({
 	'@middlewares': path.join(__dirname, '..', 'middlewares'),
 	'@routes': path.join(__dirname, '..', 'routes'),
 	'@repositories': path.join(__dirname, '..', 'repositories'),
-	'@service': path.join(__dirname, '..', 'services'),
+	'@services': path.join(__dirname, '..', 'services'),
 	'@shared': path.join(__dirname, '..', 'shared'),
 	'@config': path.join(__dirname),
 })

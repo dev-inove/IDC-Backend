@@ -1,11 +1,11 @@
 import { Prisma } from '@prisma/client'
 import { Request, Response } from 'express'
-import ExemploService from '@services/UserService'
+import ExemploService from '@services/ExemploService'
 class ExemploController {
 	async list(request: Request, response: Response) {
 		try {
 			const result = await ExemploService.list()
-			response.status(201).json(result)
+			response.status(200).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				response
@@ -20,7 +20,7 @@ class ExemploController {
 			const { exampleId } = request.params
 
 			const result = await ExemploService.find(Number(exampleId))
-			response.status(201).json(result)
+			response.status(200).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				response
@@ -58,7 +58,7 @@ class ExemploController {
 			const { nome } = request.body
 			const { id } = request.params
 			const result = await ExemploService.update(Number(id), String(nome))
-			response.status(201).json(result)
+			response.status(200).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				response
@@ -76,7 +76,7 @@ class ExemploController {
 		try {
 			const { id } = request.params
 			const result = await ExemploService.delete(Number(id))
-			response.status(201).json(result)
+			response.status(200).json(result)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				response

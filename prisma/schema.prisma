@@ -18,22 +18,3 @@ model Exemplo {
   @@map("exemplo")
   @@schema("example")
 }
-
-model Produto {
-  id          Int      @id @default(autoincrement())
-  nome        String
-  preco       Float
-  peso        Float
-  categoriaId Int ?
-  Categoria   Categoria ? @relation(fields: [categoriaId], references: [id])
-
-  @@schema("example")
-}
-
-model Categoria {
-  id       Int       @id @default(autoincrement())
-  nome     String
-  produtos Produto[]
-
-  @@schema("example")
-}

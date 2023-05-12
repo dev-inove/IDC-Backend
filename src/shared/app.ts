@@ -1,5 +1,5 @@
 import 'module-alias/register'
-import '@config/moduleAliasConfig'
+import '../config/moduleAliasConfig'
 
 import dotenv from 'dotenv'
 dotenv.config()
