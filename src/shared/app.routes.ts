@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import exemploRoutes from '@modules/Exemplo/routes/exemplo.routes'
+import { ExemploRoutes } from '@routes/exemplo.routes'
 
 const routes = Router()
 
@@ -14,6 +14,6 @@ routes.get('/', (request, response) => {
 	}
 })
 
-routes.use('/exemplo', exemploRoutes)
+routes.use('/exemplo', ExemploRoutes)
 
 export default routes

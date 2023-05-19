@@ -25,9 +25,13 @@
 		"import/resolver": {
 			"alias": {
 				"map": [
-					["@modules", "./src/modules"],
-					["@shared", "./src/shared"],
-					["@config", "./src/config"]
+					["@controllers" , "./src/controllers"],
+					["@middlewares" , "./src/middlewares"],
+					["@routes"	    , "./src/routes"],
+					["@repositories", "./src/repositories"],
+					["@services"    , "./src/services"],
+					["@shared"      , "./src/shared"],
+					["@config"      , "./src/config"]
 				],
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}
