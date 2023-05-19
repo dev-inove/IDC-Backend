@@ -2,10 +2,10 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 class ExemploRepository {
-	async delete(id: number) {
+	async delete(id: string) {
 		return await prisma.exemplo.delete({
 			where: {
-				id: id,
+				id,
 			},
 		})
 	}
@@ -14,15 +14,13 @@ class ExemploRepository {
 		return await prisma.exemplo.findMany()
 	}
 
-	async create(nome: string) {
+	async create(data: { nome: string }) {
 		return await prisma.exemplo.create({
-			data: {
-				nome,
-			},
+			data,
 		})
 	}
 
-	async find(id: number) {
+	async find(id: string) {
 		return await prisma.exemplo.findUnique({
 			where: {
 				id,
@@ -30,14 +28,12 @@ class ExemploRepository {
 		})
 	}
 
-	async update(id: number, nome: string) {
+	async update(id: string, data: { nome: string }) {
 		return await prisma.exemplo.update({
 			where: {
 				id,
 			},
-			data: {
-				nome,
-			},
+			data,
 		})
 	}
 }

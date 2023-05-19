@@ -1,20 +1,24 @@
 import { Router } from 'express'
-import ExemploController from '@controllers/ExemploController'
-import ExemploValidations from '@middlewares/ExemploValidations'
-const routes = Router()
+import { ExemploController } from '@controllers/ExemploController'
+import { ExemploValidations } from '@middlewares/ExemploValidations'
 
+export const ExemploRoutes = Router()
+const exemploController = new ExemploController()
+const exemploValidations = new ExemploValidations()
 /*
     request ===> 
 */
 
-routes.get('/', ExemploValidations.list, ExemploController.list)
+ExemploRoutes.get('/', exemploValidations.list, exemploController.list)
 
-routes.get('/:exampleId', ExemploValidations.find, ExemploController.find)
+ExemploRoutes.get('/:id', exemploValidations.find, exemploController.find)
 
-routes.post('/', ExemploValidations.create, ExemploController.create)
+ExemploRoutes.post('/', exemploValidations.create, exemploController.create)
 
-routes.patch('/:id', ExemploValidations.update, ExemploController.update)
+ExemploRoutes.patch('/:id', exemploValidations.update, exemploController.update)
 
-routes.delete('/:id', ExemploValidations.delete, ExemploController.delete)
-
-export default routes
+ExemploRoutes.delete(
+	'/:id',
+	exemploValidations.delete,
+	exemploController.delete,
+)

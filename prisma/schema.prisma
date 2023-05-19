@@ -13,8 +13,8 @@ datasource db {
 }
 
 model Exemplo {
-  id   Int    @id @default(autoincrement())
-  nome String
+  id   String   @id @default(uuid())
+  nome String?
   @@map("exemplo")
   @@schema("example")
 }
