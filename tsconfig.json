@@ -16,5 +16,5 @@
 			"@config/*": ["config/*"]
 		}
 	},
-	"exclude": ["node_modules", "public_html", "test"]
+	"exclude": ["node_modules", "public_html", "test","tsconfig.json"]
 }

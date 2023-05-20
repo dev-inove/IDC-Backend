@@ -11,82 +11,11 @@ datasource db {
   url      = env("DATABASE_URL")
   schemas  = ["dev"]
 }
-// Usuário administrativo
-    model Usuario {
-        id String @id @default(uuid())
 
-        @@map("usuario")
-        @@schema("dev")
-    }
-//  Programa Governamental
-    model ProgramaGovernamental {
-        id String @id @default(uuid())
-        assistido_id String @unique
-        assistido Assistido @relation(fields: [assistido_id], references: [id])
-        
-
-        @@map("programa_governamental")
-        @@schema("dev")
-    }
-
-// Assistido 
-    model Assistido {
-        id String @id @default(uuid())
-        programaGovernamental ProgramaGovernamental?
-
-        @@map("assistido")
-        @@schema("dev")
-    }
-
-// Relacionados com assistido
-    // Endereço
-    model Endereco{
-        id String @id @default(uuid())
-
-        @@map("endereco")
-        @@schema("dev")
-    }
-    // Responsavel
-    model Responsavel{
-        id String @id @default(uuid())
-
-        @@map("responsavel")
-        @@schema("dev")
-    }
-
-    // Familia
-    model Familia{
-        id String @id @default(uuid())
-
-        @@map("familia")
-        @@schema("dev")
-    }
-    // Relacionados Com Familia
-    model Familiar{
-        id String @id @default(uuid())
-
-        @@map("familiar")
-        @@schema("dev")
-    }
-    //Despesas
-    model Despesas{
-        id String @id @default(uuid())
-
-        @@map("despesas")
-        @@schema("dev")
-    }
-    // Veículo
-    model Veiculo{
-        id String @id @default(uuid())
-
-        @@map("veiculo")
-        @@schema("dev")
-    }
-    // Habitação
-    model Habitacao{
-        id String @id @default(uuid())
-
-        @@map("habitacao")
-        @@schema("dev")
-    }
-
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  @@schema("dev")
+}
