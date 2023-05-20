@@ -17,5 +17,6 @@ model User {
   email     String   @unique
   name      String?
   password  String
+  role      String
   @@schema("dev")
 }
