@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { ExemploController } from '@controllers/ExemploController'
 import { ExemploValidations } from '@middlewares/ExemploValidations'
 
-export const ExemploRoutes = Router()
+const ExemploRoutes = Router()
 const exemploController = new ExemploController()
 const exemploValidations = new ExemploValidations()
 /*
@@ -22,3 +22,5 @@ ExemploRoutes.delete(
 	exemploValidations.delete,
 	exemploController.delete,
 )
+
+export { ExemploRoutes }

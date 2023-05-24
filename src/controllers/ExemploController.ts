@@ -23,7 +23,7 @@ export class ExemploController {
 	}
 
 	async create(
-		request: Request<unknown, unknown, { nome: string }>,
+		request: Request<any, any, { nome: string }>,
 		response: Response,
 	) {
 		const { nome } = request.body
@@ -36,7 +36,7 @@ export class ExemploController {
 	}
 
 	async update(
-		request: Request<{ id: string }, unknown, { nome: string }>,
+		request: Request<{ id: string }, any, { nome: string }>,
 		response: Response,
 	) {
 		const { nome } = request.body
