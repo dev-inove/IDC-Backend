@@ -10,17 +10,6 @@
     "database": "sudo docker compose up",
     "build": "tsc"
   },
-  "_moduleAliases": {
-    "~": "",
-    "@shared": "src/shared",
-    "@config": "src/config",
-    "@services":"src/services",
-    "@repositories":"src/repositories",
-    "@controllers": "src/controllers",
-    "@middlewares": "src/middlewares",
-    "@routes": "src/routes",
-    "@tests": "src/tests"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
