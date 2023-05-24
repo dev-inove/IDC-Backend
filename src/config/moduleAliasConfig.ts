@@ -8,5 +8,6 @@ export default moduleAlias.addAliases({
 	'@repositories': path.join(__dirname, '..', 'repositories'),
 	'@services': path.join(__dirname, '..', 'services'),
 	'@shared': path.join(__dirname, '..', 'shared'),
+	'@tests': path.join(__dirname, '..', 'tests'),
 	'@config': path.join(__dirname),
 })
