@@ -131,3 +131,7 @@ para baixar todas as dependencias. Em seguida damos um
 npm run dev
 ```
 para verificar se a instalaçao e execuçao ocorreu com exito.
+
+
+## Leia o modelo de contribuição
+[Modelo de contribuição](/Modelo%20de%20contibui%C3%A7%C3%A3o.md)
