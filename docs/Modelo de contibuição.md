@@ -30,12 +30,15 @@ Exemplo: "IDC-23-B001-feat-criar-login"
 
 * Quando possivel faça apenas um(1) commit por branch.
 
+## Para quando tiver terminado de implementar a task:
+
 * Quando a task estiver completa e testada, abra um pull request (PR) da branch criada para a branch dev. para isso entre no repositório e observe que vai aparecer um alerta com a opção compare & pull request. Clique nesse botão!
 
 Outra maneira de criar uma PR é indo na aba Pull requests > new pull request
 
 * Lembre-se de trocar a branch que vai ser receber o merge para dev
-* Certifique que você incluiu todos os detalhes da task na descrição do PR como exemplificado no print a baixo. Quando estiver tudo certo crie a PR clicando em “Create pull request”
+* Certifique que você incluiu todos os detalhes da task na descrição do PR como exemplificado nos prints a baixo. Quando estiver tudo certo crie a PR clicando em “Create pull request”
+![imagem exemplo pull request](./pullRequestExample.png)
 * Tudo certo, agora o lider do seu time vai revisar e avaliar o código.
 * Aguarde a aprovação e, se necessário, faça as alterações sugeridas.
 * Quando o PR for aprovado, faça o merge da PR para a branch dev.
@@ -43,14 +46,14 @@ Outra maneira de criar uma PR é indo na aba Pull requests > new pull request
 para um commit:
 
 ```text
-git ferch -all
+git fetch -all
 git push origin nome-da-branch
 ```
 
 para mais de um commit:
 
 ```text
-git ferch -all
+git fetch -all
 git rebase origin/dev
 git push origin nome-da-branch
 ```
