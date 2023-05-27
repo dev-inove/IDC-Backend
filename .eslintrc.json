@@ -27,7 +27,14 @@
 				"map": [
 					["@modules", "./src/modules"],
 					["@shared", "./src/shared"],
-					["@config", "./src/config"]
+					["@config", "./src/config"],
+					["@services", "./src/services"],
+					["@repositories", "./src/repositories"],
+					["@controllers", "./src/controllers"],
+					["@middlewares", "./src/middlewares"],
+					["@routes", "./src/routes"],
+					["@tests", "./src/tests"],
+					["@interfaces", "./src/interfaces"]
 				],
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}

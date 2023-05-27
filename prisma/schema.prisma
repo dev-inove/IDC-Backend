@@ -13,10 +13,11 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  role      String
+  id       String @id @default(uuid())
+  email    String @unique
+  name     String
+  password String
+  role     String
+
   @@schema("dev")
 }
