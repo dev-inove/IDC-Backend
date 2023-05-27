@@ -37,8 +37,10 @@ Exemplo: "IDC-23-B001-feat-criar-login"
 Outra maneira de criar uma PR é indo na aba Pull requests > new pull request
 
 * Lembre-se de trocar a branch que vai ser receber o merge para dev
-* Certifique que você incluiu todos os detalhes da task na descrição do PR como exemplificado nos prints a baixo. Quando estiver tudo certo crie a PR clicando em “Create pull request”
-![imagem exemplo pull request](./pullRequestExample.png)
+* Certifique que você selecionou as branchs corretas no pull request como na imagem abaixo:
+![imagem exemplo pull request1](./pullRequestExample.png)
+* Após isso certifique-se de inserir os detalhes da task na descrição do PR como exemplificado no print abaixo. Quando estiver tudo certo crie a PR clicando em “Create pull request”
+![imagem exemplo pull request2](./pullRequestExample2.png)
 * Tudo certo, agora o lider do seu time vai revisar e avaliar o código.
 * Aguarde a aprovação e, se necessário, faça as alterações sugeridas.
 * Quando o PR for aprovado, faça o merge da PR para a branch dev.
@@ -47,7 +49,7 @@ para um commit:
 
 ```text
 git fetch -all
-git push origin nome-da-branch
+git push origin dev
 ```
 
 para mais de um commit:
@@ -55,7 +57,7 @@ para mais de um commit:
 ```text
 git fetch -all
 git rebase origin/dev
-git push origin nome-da-branch
+git push origin dev
 ```
 
 Onde o "nome-da-branch" é o nome da branch que voce criou.
