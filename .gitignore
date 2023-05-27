@@ -1,8 +1,8 @@
 # .gitignore
-node_modules
-dist
-.vscode
-prisma/migrations
-coverage
+node_modules/
+dist/
+.vscode/
+prisma/migrations/
+coverage/
 ```
 
