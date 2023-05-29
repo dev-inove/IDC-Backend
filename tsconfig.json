@@ -19,7 +19,8 @@
 			"@controllers": ["controllers/*"],
 			"@middlewares": ["middlewares/*"],
 			"@routes/*": ["routes/*"],
-			"@tests/*": ["tests/*"]
+			"@tests/*": ["tests/*"],
+			"@interfaces/*": ["interfaces/*"]
 		}
 	},
 	"exclude": ["node_modules", "public_html", "test", "tsconfig.json"]

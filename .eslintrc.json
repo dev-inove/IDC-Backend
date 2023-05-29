@@ -33,7 +33,8 @@
 					["@controllers", "./src/controllers"],
 					["@middlewares", "./src/middlewares"],
 					["@routes", "./src/routes"],
-					["@tests", "./src/tests"]
+					["@tests", "./src/tests"],
+					["@interfaces", "./src/interfaces"]
 				],
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}

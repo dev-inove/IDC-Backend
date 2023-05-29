@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { UserRepositories } from '@repositories/UserRepositories'
-import { GeneralError, PrismaError } from 'interfaces/IErrors'
+import { GeneralError, PrismaError } from '@interfaces/IErrors'
 
 const userRepositories = new UserRepositories()
 
@@ -24,7 +24,15 @@ class UserService {
 		}
 	}
 
-	async Update(id: string, body: { nome: string }) {
+	async Update(
+		id: string,
+		body: {
+			name: string | undefined
+			email: string | undefined
+			password: string | undefined
+			role: string | undefined
+		},
+	) {
 		try {
 			const user = await userRepositories.FindById(id)
 			if (user === null) {
@@ -44,10 +52,10 @@ class UserService {
 	}
 
 	async Create(body: {
-		nome: string
+		name: string
 		email: string
-		senha: string
-		tipodeAcesso: string
+		password: string
+		role: string
 	}) {
 		try {
 			return await userRepositories.Create(body)

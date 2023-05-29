@@ -9,5 +9,6 @@ export default moduleAlias.addAliases({
 	'@services': path.join(__dirname, '..', 'services'),
 	'@shared': path.join(__dirname, '..', 'shared'),
 	'@tests': path.join(__dirname, '..', 'tests'),
+	'@interfaces': path.join(__dirname, '..', 'interfaces'),
 	'@config': path.join(__dirname),
 })
