@@ -1,56 +1,63 @@
 import { Request, Response } from 'express'
-import UserServices from '../services/UserServices'
+import UserServices from '@services/UserServices'
+import { ErroGeral, ErroPrisma } from '@repositories/ErrorInterfaces'
 
-class UserControllers {
-	public async list(req: Request, res: Response): Promise<void> {
-		try {
-			const users = await UserServices.list()
-			res.json(users)
-		} catch (error) {
-			res.status(500).json({ error: 'Erro ao buscar usuários' })
-		}
+export class UserController {
+	async list(request: Request, response: Response) {
+		const result = await UserServices.list()
+
+		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+			return response.status(400).json({ erro: result })
+
+		response.status(200).json(result)
 	}
 
-	public async find(req: Request, res: Response): Promise<void> {
-		const { id } = req.params
-		try {
-			const user = await UserServices.find(id)
-			res.json(user)
-		} catch (error) {
-			res.status(500).json({ error: 'Erro ao buscar usuário' })
-		}
+	async find(request: Request<{ id: string }>, response: Response) {
+		const { id } = request.params
+		const result = await UserServices.find(id)
+
+		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+			return response.status(400).json({ erro: result })
+
+		response.status(200).json(result)
 	}
 
-	public async create(req: Request, res: Response): Promise<void> {
-		const userData = req.body
-		try {
-			await UserServices.create(userData)
-			res.json({ message: 'Usuário criado com sucesso' })
-		} catch (error) {
-			res.status(500).json({ error: 'Erro ao criar usuário' })
-		}
+	async create(
+		request: Request<any, any, { nome: string }>,
+		response: Response,
+	) {
+		const { nome } = request.body
+		const result = await UserServices.create({ nome })
+
+		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+			return response.status(400).json({ erro: result })
+
+		response.status(201).json(result)
 	}
 
-	public async update(req: Request, res: Response): Promise<void> {
-		const { id } = req.params
-		const userData = req.body
-		try {
-			await UserServices.update(id, userData)
-			res.json({ message: 'Usuário atualizado com sucesso' })
-		} catch (error) {
-			res.status(500).json({ error: 'Erro ao atualizar usuário' })
-		}
+	async update(
+		request: Request<{ id: string }, any, { nome: string }>,
+		response: Response,
+	) {
+		const { nome } = request.body
+		const { id } = request.params
+		const result = await UserServices.update(id, { nome })
+
+		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+			return response.status(400).json({ erro: result })
+
+		response.status(200).json(result)
 	}
 
-	public async delete(req: Request, res: Response): Promise<void> {
-		const { id } = req.params
-		try {
-			await UserServices.delete(id)
-			res.json({ message: 'Usuário excluído com sucesso' })
-		} catch (error) {
-			res.status(500).json({ error: 'Erro ao excluir usuário' })
-		}
+	async delete(request: Request<{ id: string }>, response: Response) {
+		const { id } = request.params
+		const result = await UserServices.delete(id)
+
+		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+			return response.status(400).json({ erro: result })
+
+		response.status(200).json(result)
 	}
 }
 
-export default new UserControllers()
+export default new UserController()
