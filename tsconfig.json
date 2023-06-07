@@ -16,8 +16,8 @@
 			"@config/*": ["config/*"],
 			"@services/*": ["services/*"],
 			"@repositories/*": ["repositories/*"],
-			"@controllers": ["controllers/*"],
-			"@middlewares": ["middlewares/*"],
+			"@controllers/*": ["controllers/*"],
+			"@middlewares/*": ["middlewares/*"],
 			"@routes/*": ["routes/*"],
 			"@tests/*": ["tests/*"],
 			"@interfaces/*": ["interfaces/*"]

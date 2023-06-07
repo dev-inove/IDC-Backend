@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import UserRoutes from '@routes/User.router';
+import UserRoutes from '@routes/user.router'
 const routes = Router()
 
-routes.use('/user', UserRoutes);
+routes.use('/user', UserRoutes)
 
 routes.get('/', (request, response) => {
 	try {
