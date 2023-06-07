@@ -1,63 +1,86 @@
 import { Request, Response } from 'express'
-import UserServices from '@services/UserServices'
-import { ErroGeral, ErroPrisma } from '@repositories/ErrorInterfaces'
+import { UserServices } from '@services/UserServices'
+import { GeneralError, PrismaError } from '@interfaces/IErrors'
 
-export class UserController {
+const userServices = new UserServices()
+
+export class UserControllers {
 	async list(request: Request, response: Response) {
-		const result = await UserServices.list()
+		const result = await userServices.list()
 
-		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+		if (result instanceof GeneralError || result instanceof PrismaError)
 			return response.status(400).json({ erro: result })
 
-		response.status(200).json(result)
+		return response.status(200).json(result)
 	}
 
-	async find(request: Request<{ id: string }>, response: Response) {
+	async findById(request: Request<{ id: string }>, response: Response) {
 		const { id } = request.params
-		const result = await UserServices.find(id)
+		const result = await userServices.findById(id)
 
-		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+		if (result instanceof GeneralError || result instanceof PrismaError)
 			return response.status(400).json({ erro: result })
 
-		response.status(200).json(result)
+		return response.status(200).json(result)
+	}
+
+	async findByEmail(request: Request<{ email: string }>, response: Response) {
+		const { email } = request.params
+		const result = await userServices.findByEmail(email)
+
+		if (result instanceof GeneralError || result instanceof PrismaError)
+			return response.status(400).json({ erro: result })
+
+		return response.status(200).json(result)
 	}
 
 	async create(
-		request: Request<any, any, { nome: string }>,
+		request: Request<
+			unknown,
+			unknown,
+			{ name: string; email: string; password: string; role: string }
+		>,
 		response: Response,
 	) {
-		const { nome } = request.body
-		const result = await UserServices.create({ nome })
+		const { body } = request
+		const result = await userServices.create(body)
 
-		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+		if (result instanceof GeneralError || result instanceof PrismaError)
 			return response.status(400).json({ erro: result })
 
-		response.status(201).json(result)
+		return response.status(201).json(result)
 	}
 
 	async update(
-		request: Request<{ id: string }, any, { nome: string }>,
+		request: Request<
+			{ id: string },
+			unknown,
+			{
+				name: string | undefined
+				email: string | undefined
+				password: string | undefined
+				role: string | undefined
+			}
+		>,
 		response: Response,
 	) {
-		const { nome } = request.body
+		const { body } = request
 		const { id } = request.params
-		const result = await UserServices.update(id, { nome })
+		const result = await userServices.update(id, body)
 
-		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+		if (result instanceof GeneralError || result instanceof PrismaError)
 			return response.status(400).json({ erro: result })
 
-		response.status(200).json(result)
+		return response.status(200).json(result)
 	}
 
 	async delete(request: Request<{ id: string }>, response: Response) {
 		const { id } = request.params
-		const result = await UserServices.delete(id)
+		const result = await userServices.delete(id)
 
-		if (result instanceof ErroGeral || result instanceof ErroPrisma)
+		if (result instanceof GeneralError || result instanceof PrismaError)
 			return response.status(400).json({ erro: result })
 
-		response.status(200).json(result)
+		return response.status(200).json(result)
 	}
 }
-
-export default new UserController()

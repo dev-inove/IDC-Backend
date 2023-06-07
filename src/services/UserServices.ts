@@ -2,9 +2,9 @@ import { Prisma } from '@prisma/client'
 import { UserRepositories } from '@repositories/UserRepositories'
 import { GeneralError, PrismaError } from '@interfaces/IErrors'
 
-export const userRepositories = new UserRepositories()
+const userRepositories = new UserRepositories()
 
-export class UserService {
+export class UserServices {
 	async delete(id: string) {
 		try {
 			const user = await userRepositories.findById(id)
