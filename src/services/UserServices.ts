@@ -2,16 +2,16 @@ import { Prisma } from '@prisma/client'
 import { UserRepositories } from '@repositories/UserRepositories'
 import { GeneralError, PrismaError } from '@interfaces/IErrors'
 
-const userRepositories = new UserRepositories()
+export const userRepositories = new UserRepositories()
 
-class UserService {
-	async Delete(id: string) {
+export class UserService {
+	async delete(id: string) {
 		try {
-			const user = await userRepositories.FindById(id)
+			const user = await userRepositories.findById(id)
 			if (user === null) {
 				throw new Error('Usuário não encontrado')
 			}
-			return await userRepositories.Delete(id)
+			return await userRepositories.delete(id)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				return new PrismaError(error)
@@ -19,12 +19,12 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.delete'),
 				)
 		}
 	}
 
-	async Update(
+	async update(
 		id: string,
 		body: {
 			name: string | undefined
@@ -34,11 +34,12 @@ class UserService {
 		},
 	) {
 		try {
-			const user = await userRepositories.FindById(id)
-			if (user === null) {
-				throw new Error('Usuário não encontrado')
+			if (id === undefined) {
+				throw new Error(
+					'Não é possível realizar a requisição de atualização sem um ID',
+				)
 			}
-			return await userRepositories.Update(id, body)
+			return await userRepositories.update(id, body)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				return new PrismaError(error)
@@ -46,19 +47,19 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.update'),
 				)
 		}
 	}
 
-	async Create(body: {
+	async create(body: {
 		name: string
 		email: string
 		password: string
 		role: string
 	}) {
 		try {
-			return await userRepositories.Create(body)
+			return await userRepositories.create(body)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				return new PrismaError(error)
@@ -66,14 +67,14 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.create'),
 				)
 		}
 	}
 
-	async List() {
+	async list() {
 		try {
-			return await userRepositories.List()
+			return await userRepositories.list()
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
 				return new PrismaError(error)
@@ -81,14 +82,14 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.list'),
 				)
 		}
 	}
 
-	async FindByEmail(email: string) {
+	async findByEmail(email: string) {
 		try {
-			const user = await userRepositories.FindByEmail(email)
+			const user = await userRepositories.findByEmail(email)
 			if (user === null) {
 				throw new Error('Usuário não encontrado')
 			}
@@ -100,14 +101,14 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.findByEmail'),
 				)
 		}
 	}
 
-	async FindById(id: string) {
+	async findById(id: string) {
 		try {
-			const user = await userRepositories.FindById(id)
+			const user = await userRepositories.findById(id)
 			if (user === null) {
 				throw new Error('Usuário não encontrado')
 			}
@@ -119,10 +120,8 @@ class UserService {
 				return new GeneralError(error)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | ExemploService.delete'),
+					new Error('Erro indefinido  | UserService.findById'),
 				)
 		}
 	}
 }
-
-export default new UserService()

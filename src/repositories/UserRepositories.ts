@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export class UserRepositories {
-	async Delete(id: string) {
+	async delete(id: string) {
 		return await prisma.user.delete({
 			where: {
 				id,
@@ -11,7 +11,7 @@ export class UserRepositories {
 		})
 	}
 
-	async Update(
+	async update(
 		id: string,
 		body: {
 			name: string | undefined
@@ -28,22 +28,22 @@ export class UserRepositories {
 		})
 	}
 
-	async Create(data: {
+	async create(body: {
 		name: string
 		email: string
 		password: string
 		role: string
 	}) {
 		return await prisma.user.create({
-			data,
+			data: body,
 		})
 	}
 
-	async List() {
+	async list() {
 		return await prisma.user.findMany()
 	}
 
-	async FindByEmail(email: string) {
+	async findByEmail(email: string) {
 		return await prisma.user.findUnique({
 			where: {
 				email,
@@ -51,7 +51,7 @@ export class UserRepositories {
 		})
 	}
 
-	async FindById(id: string) {
+	async findById(id: string) {
 		return await prisma.user.findUnique({
 			where: {
 				id,
