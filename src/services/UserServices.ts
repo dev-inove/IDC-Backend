@@ -14,12 +14,13 @@ export class UserServices {
 			return await userRepositories.delete(id)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | UserService.delete'),
+					'US001',
+					'Erro indefinido no UserServices.delete',
 				)
 		}
 	}
@@ -42,12 +43,13 @@ export class UserServices {
 			return await userRepositories.update(id, body)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | UserService.update'),
+					'US002',
+					'Erro indefinido no UserServices.update',
 				)
 		}
 	}
@@ -62,12 +64,13 @@ export class UserServices {
 			return await userRepositories.create(body)
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | UserService.create'),
+					'US003',
+					'Erro indefinido no UserServices.create',
 				)
 		}
 	}
@@ -77,13 +80,11 @@ export class UserServices {
 			return await userRepositories.list()
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
-				return new GeneralError(
-					new Error('Erro indefinido  | UserService.list'),
-				)
+				return new GeneralError('US004', 'Erro indefinido no UserServices.list')
 		}
 	}
 
@@ -96,12 +97,13 @@ export class UserServices {
 			return user
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | UserService.findByEmail'),
+					'US005',
+					'Erro indefinido no UserServices.findByEmail',
 				)
 		}
 	}
@@ -115,12 +117,13 @@ export class UserServices {
 			return user
 		} catch (error) {
 			if (error instanceof Prisma.PrismaClientKnownRequestError) {
-				return new PrismaError(error)
+				return new PrismaError(error.code, error.message)
 			} else if (error instanceof Error) {
-				return new GeneralError(error)
+				return new GeneralError(error.name, error.message)
 			} else
 				return new GeneralError(
-					new Error('Erro indefinido  | UserService.findById'),
+					'US006',
+					'Erro indefinido no UserServices.findById',
 				)
 		}
 	}

@@ -1,9 +1,9 @@
-import express from 'express'
+import { Router } from 'express'
 import { UserMiddlewares } from '@middlewares/UserMiddlewares'
 import { UserControllers } from '@controllers/UserControllers'
 import { ensureAuthenticated } from '@middlewares/ensureAuthenticated'
 
-export const UserRoutes = express.Router()
+export const UserRoutes = Router()
 const userControllers = new UserControllers()
 const userMiddlewares = new UserMiddlewares()
 
