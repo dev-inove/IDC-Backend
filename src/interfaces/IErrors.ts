@@ -1,5 +1,3 @@
-import { Prisma } from '@prisma/client'
-
 interface Erro {
 	name: string
 	message: string
@@ -8,17 +6,19 @@ interface Erro {
 export class PrismaError implements Erro {
 	name: string
 	message: string
-	constructor(prismaErrorObject: Prisma.PrismaClientKnownRequestError) {
-		this.name = prismaErrorObject.code
-		this.message = prismaErrorObject.message
+
+	constructor(errorName: string, errorMessage: string) {
+		this.name = errorName
+		this.message = errorMessage
 	}
 }
 
 export class GeneralError implements Erro {
 	name: string
 	message: string
-	constructor(generalErrorObject: Error) {
-		this.name = generalErrorObject.name
-		this.message = generalErrorObject.message
+
+	constructor(errorName: string, errorMessage: string) {
+		this.name = errorName
+		this.message = errorMessage
 	}
 }

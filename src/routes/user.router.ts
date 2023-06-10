@@ -1,10 +1,9 @@
-import { Request, Response } from 'express'
-import express from 'express'
+import { Router } from 'express'
 import { UserMiddlewares } from '@middlewares/UserMiddlewares'
-import { UserControllers } from '@controllers/NomeDaEntidadeController'
+import { UserControllers } from '@controllers/UserControllers'
 import { ensureAuthenticated } from '@middlewares/ensureAuthenticated'
 
-const UserRoutes = express.Router()
+export const UserRoutes = Router()
 const userControllers = new UserControllers()
 const userMiddlewares = new UserMiddlewares()
 
@@ -27,5 +26,3 @@ UserRoutes.post('/create', userMiddlewares.create, userControllers.create)
 UserRoutes.patch('/update/:id', userMiddlewares.update, userControllers.update)
 
 UserRoutes.delete('/delete/:id', userMiddlewares.delete, userControllers.delete)
-
-export = UserRoutes

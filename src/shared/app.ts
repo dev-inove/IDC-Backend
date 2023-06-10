@@ -25,7 +25,7 @@ class App {
 	private middlewares(): void {
 		this.server.use(express.json())
 		this.server.use(cors())
-		this.server.use(bodyParser.json())
+		this.server.use(bodyParser.urlencoded())
 	}
 
 	public getServer(): express.Application {

@@ -1,4 +1,3 @@
-import { IUser } from '@interfaces/IUser'
 import { Request, Response } from 'express'
 
 export class UserMiddlewares {
